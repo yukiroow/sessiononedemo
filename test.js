@@ -1,5 +1,6 @@
 const test = require("node:test");
 const assert = require("node:assert/strict");
+const server = require("./index.js");
 
 test("Response JSON test", async (t) => {
     const res = await fetch("http://localhost:7777");
@@ -9,4 +10,8 @@ test("Response JSON test", async (t) => {
         "Hello There!",
         "Response should have a variable `message` with value `Hello There!`"
     );
+});
+
+test.after(() => {
+    server.close();
 });
