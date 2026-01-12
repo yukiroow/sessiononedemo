@@ -1,5 +1,6 @@
 const test = require("node:test");
 const assert = require("node:assert/strict");
+const server = require("./index.js");
 
 test("Test root endpoint", async (t) => {
     const res = await fetch("http://localhost:7777");
@@ -19,4 +20,8 @@ test("Test /goodbye endpoint", async (t) => {
         "Bye bye!",
         "Response should have a variable `message` with value `Bye bye!`"
     );
+});
+
+test.after(() => {
+    server.close();
 });
