@@ -6,7 +6,7 @@ test("Response JSON test", async (t) => {
     const body = await res.text();
     assert.strictEqual(
         JSON.parse(body).message,
-        "Hello There! ",
+        "Hello There!",
         "Response should have a variable `message` with value `Hello There!`"
     );
 });
