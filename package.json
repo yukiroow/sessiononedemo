@@ -1,21 +1,21 @@
 {
-  "name": "sessiononedemo",
-  "version": "1.0.0",
-  "description": "Bootcamp Session 1 demo",
-  "homepage": "https://github.com/yukiroow/sessiononedemo#readme",
-  "bugs": {
-    "url": "https://github.com/yukiroow/sessiononedemo/issues"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/yukiroow/sessiononedemo.git"
-  },
-  "license": "ISC",
-  "author": "Harry Dominguez Jr.",
-  "type": "commonjs",
-  "main": "index.js",
-  "scripts": {
-    "test": "test",
-    "dev": "node index.js"
-  }
+    "name": "sessiononedemo",
+    "version": "1.0.0",
+    "description": "Bootcamp Session 1 demo",
+    "homepage": "https://github.com/yukiroow/sessiononedemo#readme",
+    "bugs": {
+        "url": "https://github.com/yukiroow/sessiononedemo/issues"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/yukiroow/sessiononedemo.git"
+    },
+    "license": "ISC",
+    "author": "Harry Dominguez Jr.",
+    "type": "commonjs",
+    "main": "index.js",
+    "scripts": {
+        "test": "node test.js",
+        "dev": "node index.js"
+    }
 }
