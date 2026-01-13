@@ -1,4 +1,4 @@
-name: Node.js CI
+name: \"Hello World\" app CI Script
 
 on:
   push:
@@ -23,10 +23,13 @@ jobs:
         node-version: ${{ matrix.node-version }}
         cache: 'npm'
     - run: npm ci
+    - name: Clean previous container
+      run: docker stop sessionone-test || true
+           docker rm sessionone-test || true
     - name: Build Docker Image for Testing
       run: docker build -t sone-image .
     - name: Run Container in Detached Mode
-      run: docker run -d --name sessionone-test -p 7776:7777 sone-image
+      run: docker run --name sessionone-test -p 7776:7777 sone-image
     - name: Run Tests
       run: docker exec sessionone-test npm test
     - name: Stop and Remove Container
