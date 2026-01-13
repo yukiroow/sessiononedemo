@@ -28,7 +28,7 @@ jobs:
     - name: Run Container in Detached Mode
       run: docker run -d --name sessionone-test -p 7777:7777 sone-image
     - name: Run Tests
-      run: docker exec test-container npm test
+      run: docker exec sessionone-test npm test
     - name: Stop and Remove Container
       if: always()
       run: docker stop sessionone-test && docker rm sessionone-test
