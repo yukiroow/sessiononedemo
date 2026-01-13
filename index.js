@@ -6,7 +6,7 @@ const server = http.createServer((req, res) => {
     res.end(JSON.stringify(message));
 });
 
-if (process.env.NODE_ENV !== "test") {
+if (!process.env.NODE_ENV) {
     const port = process.env.PORT || 7777;
     server.listen(port, () => {
         console.log(`Server running on port ${port}`);
