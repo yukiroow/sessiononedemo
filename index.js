@@ -6,8 +6,11 @@ const server = http.createServer((req, res) => {
     res.end(JSON.stringify(message));
 });
 
-server.listen(7777, () => {
-    console.log("Server has started at port 7777");
-});
+if (process.env.NODE_ENV !== "test") {
+    const port = process.env.PORT || 7777;
+    server.listen(port, () => {
+        console.log(`Server running on port ${port}`);
+    });
+}
 
 module.exports = server;
