@@ -2,8 +2,13 @@ const test = require("node:test");
 const assert = require("node:assert/strict");
 const server = require("./index.js");
 
+test.before(async () => {
+    await new Promise((resolve) => server.listen(0, resolve));
+});
+
 test("Test root endpoint", async (t) => {
-    const res = await fetch("http://localhost:7777");
+    const { port } = server.address();
+    const res = await fetch(`http://localhost:${port}`);
     const body = await res.text();
     assert.strictEqual(
         JSON.parse(body).message,
@@ -13,7 +18,8 @@ test("Test root endpoint", async (t) => {
 });
 
 test("Test /goodbye endpoint", async (t) => {
-    const res = await fetch("http://localhost:7777/goodbye");
+    const { port } = server.address();
+    const res = await fetch(`http://localhost:${port}/goodbye`);
     const body = await res.text();
     assert.strictEqual(
         JSON.parse(body).message,
@@ -22,6 +28,6 @@ test("Test /goodbye endpoint", async (t) => {
     );
 });
 
-test.after(() => {
-    server.close();
+test.after(async () => {
+    await new Promise((resolve) => server.close(resolve));
 });

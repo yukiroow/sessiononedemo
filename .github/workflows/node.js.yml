@@ -1,4 +1,4 @@
-name: Node.js CI
+name: \"Hello World\" app CI Script
 
 on:
   push:
@@ -23,5 +23,10 @@ jobs:
         node-version: ${{ matrix.node-version }}
         cache: 'npm'
     - run: npm ci
-    - run: npm run build --if-present
-    - run: npm test
+    - name: Clean previous container
+      run: docker stop sessionone-test || true
+           docker rm sessionone-test || true
+    - name: Build Docker Image for Testing
+      run: docker build -t sone-image .
+    - name: Run Tests and Cleanup
+      run: docker run --rm -e NODE_ENV=test sone-image npm test
