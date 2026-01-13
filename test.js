@@ -1,6 +1,7 @@
 const test = require("node:test");
 const assert = require("node:assert/strict");
 const app = require("./index.js");
+const http = require("http");
 
 let server;
 let port;
