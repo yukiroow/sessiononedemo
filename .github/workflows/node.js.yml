@@ -23,5 +23,12 @@ jobs:
         node-version: ${{ matrix.node-version }}
         cache: 'npm'
     - run: npm ci
-    - run: npm run build --if-present
-    - run: npm test
+    - name: Build Docker Image for Testing
+      run: docker build -t sone-image .
+    - name: Run Container in Detached Mode
+      run: docker run -d --name sessionone-test -p 7777:7777 sone-image
+    - name: Run Tests
+      run: docker exec test-container npm test
+    - name: Stop and Remove Container
+      if: always()
+      run: docker stop sessionone-test && docker rm sessionone-test
