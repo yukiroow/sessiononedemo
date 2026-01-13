@@ -26,7 +26,7 @@ jobs:
     - name: Build Docker Image for Testing
       run: docker build -t sone-image .
     - name: Run Container in Detached Mode
-      run: docker run -d --name sessionone-test sone-image
+      run: docker run -d --name sessionone-test -p 7776:7777 sone-image
     - name: Run Tests
       run: docker exec sessionone-test npm test
     - name: Stop and Remove Container
